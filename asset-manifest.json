@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/deglomerate/static/css/main.47f47af4.chunk.css",
+    "main.js": "/deglomerate/static/js/main.d0d99108.chunk.js",
+    "main.js.map": "/deglomerate/static/js/main.d0d99108.chunk.js.map",
+    "runtime-main.js": "/deglomerate/static/js/runtime-main.9c1e51a4.js",
+    "runtime-main.js.map": "/deglomerate/static/js/runtime-main.9c1e51a4.js.map",
+    "static/js/2.5e18c326.chunk.js": "/deglomerate/static/js/2.5e18c326.chunk.js",
+    "static/js/2.5e18c326.chunk.js.map": "/deglomerate/static/js/2.5e18c326.chunk.js.map",
+    "index.html": "/deglomerate/index.html",
+    "static/css/main.47f47af4.chunk.css.map": "/deglomerate/static/css/main.47f47af4.chunk.css.map",
+    "static/js/2.5e18c326.chunk.js.LICENSE.txt": "/deglomerate/static/js/2.5e18c326.chunk.js.LICENSE.txt",
+    "static/media/backgroundExample.8c0f88d5.png": "/deglomerate/static/media/backgroundExample.8c0f88d5.png",
+    "static/media/containerExample.534f89ea.svg": "/deglomerate/static/media/containerExample.534f89ea.svg",
+    "static/media/emoticonExample.79a8f224.svg": "/deglomerate/static/media/emoticonExample.79a8f224.svg",
+    "static/media/logo.7e8ddf90.svg": "/deglomerate/static/media/logo.7e8ddf90.svg",
+    "static/media/textExample.1950240d.svg": "/deglomerate/static/media/textExample.1950240d.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9c1e51a4.js",
+    "static/js/2.5e18c326.chunk.js",
+    "static/css/main.47f47af4.chunk.css",
+    "static/js/main.d0d99108.chunk.js"
+  ]
+}
