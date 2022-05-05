@@ -188,7 +188,7 @@ async function main() {
     libraries: {},
   });
   // const ethTerrestrialLogoElement = await EthTerrestrialLogoElement.deploy('0xd65c5D035A35F41f31570887E3ddF8c3289EB920', '0xEdAC00935844245e40218F418cC6527C41513B25');
-  const ethTerrestrialLogoElement = await EthTerrestrialLogoElement.deploy('0xf738851FfA94ca835a47b735C377ba8A64123d6c', '0x549b66845218485326ca6E493DeBe3D1c37E5888');
+  const ethTerrestrialLogoElement = await EthTerrestrialLogoElement.deploy('0xd65c5D035A35F41f31570887E3ddF8c3289EB920', '0xDFe359d2B9D34182C0320125A2886408AaC631e7');
   console.log("EthTerrestrialsLogo deployed to:", ethTerrestrialLogoElement.address);
 
   const NounLogoElement = await hre.ethers.getContractFactory("NounLogoElement", {

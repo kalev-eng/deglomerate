@@ -26,7 +26,7 @@ async function main() {
     thisBatch.push(distributionList[i]);
     if (thisBatch.size % 25 == 0) {
       console.log('Airdropping for bucket...')
-      console.log(owners)
+      console.log(thisBatch)
       await backgroundLogoElement.mintAdmin(thisBatch, 1, { gasLimit : 1875000 });
       thisBatch = [];
     }
