@@ -1,9 +1,11 @@
 require("@nomiclabs/hardhat-waffle");
 require('hardhat-contract-sizer');
+require('dotenv').config();
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
+
 module.exports = {
   solidity: "0.8.4",
   defaultNetwork: "localhost",
@@ -11,6 +13,9 @@ module.exports = {
     optimizer: {
       enabled: false,
       runs: 1000,
+      // details: {
+      //  yul: false
+      //}
     }
   },
   contractSizer: {
@@ -26,18 +31,19 @@ module.exports = {
     },
     hardhat: {
       forking: {
-        url: "https://eth-mainnet.alchemyapi.io/v2/${ALCHEMY_API_KEY}",
+        url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.MAINNET_ALCHEMY_API_KEY}`,
         blockNumber: 14701924
       },
-      gas: 100000000,
+      gas: 10000000000, // tx gas limit
       blockGasLimit: 10000000000,
-      networkCheckTimeout: 100000000,
-      timeout: 100000000,
+      networkCheckTimeout: 100000000000,
+      timeout: 40000000000,
+      timeoutBlocks: 3000000000,
       allowUnlimitedContractSize: true
     },
     rinkeby: {
-      url: `https://eth-rinkeby.alchemyapi.io/v2/${ALCHEMY_API_KEY}`,
-      accounts: [`0x${RINKEBY_PRIVATE_KEY}`],
+      url: `https://eth-rinkeby.alchemyapi.io/v2/${process.env.RINKEBY_ALCHEMY_API_KEY}`,
+      accounts: [`0x${process.env.RINKEBY_PRIVATE_KEY}`],
       gasPrice: 5000000000
     },
   },
