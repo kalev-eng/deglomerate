@@ -53,7 +53,9 @@ function MetaDataViewer(props: Props)  {
      {metaData.map(mdElement => {
         return (<MainContainerStyles.Row>
                   <Typography css={[AppStyles.txt]} variant="body1" component="div">{mdElement.key}:</Typography>
-                  {mdElement.key === 'url' && mdElement.value !== '' ? 
+                  {mdElement.key === 'name' && mdElement.value !== '' ? 
+                  <Typography css={[AppStyles.txt]} variant="body1" component="div">{mdElement.value}</Typography>
+                  : mdElement.key === 'url' && mdElement.value !== '' ? 
                   <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={withHttp(mdElement.value)} underline="hover" target="_blank" rel="noreferrer">{mdElement.value}</Link></Typography>
                   : mdElement.key === 'ens' && mdElement.value !== '' ?
                   <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={'https://etherscan.io/enslookup-search?search=' + mdElement.value} underline="hover" target="_blank" rel="noreferrer">{mdElement.value}</Link></Typography>
