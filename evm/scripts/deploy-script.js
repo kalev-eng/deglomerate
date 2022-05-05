@@ -260,9 +260,9 @@ async function main() {
   await emoticonLogoElementDescriptor.setApprovedFontLinks(fonts);
 
   await backgroundLogoElement.toggleMint();
-  await emoticonLogoElement.toggleMint();
-  await textLogoElement.toggleMint();
-  await logos.toggleMint();
+  // await emoticonLogoElement.toggleMint();
+  // await textLogoElement.toggleMint();
+  // await logos.toggleMint();
 }
 
 // We recommend this pattern to be able to use async/await everywhere

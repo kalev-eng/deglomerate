@@ -1,4 +1,5 @@
 require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-etherscan");
 require('hardhat-contract-sizer');
 require('dotenv').config();
 
@@ -51,4 +52,7 @@ module.exports = {
       // accounts: [`0x${process.env.MAINNET_PRIVATE_KEY}`],
     // },
   },
+  etherscan: {
+    apiKey: `${process.env.ETHERSCAN_API_KEY}`
+  }
 };
