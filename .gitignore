@@ -1,0 +1,12 @@
+node_modules
+.env
+
+#Hardhat files
+cache
+artifacts
+contractExamples
+
+out.html
+__pycache__
+
+.DS_Store
