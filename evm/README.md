@@ -4,6 +4,6 @@ npx hardhat compile
 npx hardhat clean
 npx hardhat test
 npx hardhat node
-node scripts/<script>
+npx hardhat run scripts/<script> --network <network>
 npx hardhat help
 ```
