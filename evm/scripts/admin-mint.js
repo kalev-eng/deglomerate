@@ -19,7 +19,7 @@ async function main() {
   const logos = await Logos.attach("0xcA2849e7a32BCa1cEe3eF511C05429c03860FDcf");
 
   // await backgroundLogoElement.mintAdmin(address to, uint256 quantity);
-  await emoticonLogoElement.mintAdmin('0xB0DD5e948BcF1a4c982E7A95a2d7d39eC739FA0B', 5);
+  // await emoticonLogoElement.mintAdmin('0xB0DD5e948BcF1a4c982E7A95a2d7d39eC739FA0B', 5);
   // await textLogoElement.mintAdmin(address to, uint256 quantity);
   // await logos.mintAdmin(address to, uint256 quantity);
 }

@@ -7,16 +7,16 @@ const hre = require("hardhat");
 
 async function main() {
   const BackgroundLogoElement = await hre.ethers.getContractFactory("BackgroundLogoElement");
-  const backgroundLogoElement = await BackgroundLogoElement.attach("0x9EeC4EdE727D25cBB4348D8cCA109F3109537ecd");
+  const backgroundLogoElement = await BackgroundLogoElement.attach("0xfedf7d1f0bde821407B4906482e0d94CE2B04b1c");
 
   const EmoticonLogoElement = await hre.ethers.getContractFactory("EmoticonLogoElement");
-  const emoticonLogoElement = await EmoticonLogoElement.attach("0x2A99a17D663fB65DEa91C9FD019799c8b2C3Aa56");
+  const emoticonLogoElement = await EmoticonLogoElement.attach("0x0F552be8CB76f7310129ea9ac9566290bCcBe087");
 
   const TextLogoElement = await hre.ethers.getContractFactory("TextLogoElement");
-  const textLogoElement = await TextLogoElement.attach("0x03E2339A17035A17059fAb862Cf68e0cAdcF0Bf9");
+  const textLogoElement = await TextLogoElement.attach("0xe879E7cb78bc665026509598F534A9820F9db88A");
 
   const Logos = await hre.ethers.getContractFactory("Logos");
-  const logos = await Logos.attach("0xcA2849e7a32BCa1cEe3eF511C05429c03860FDcf");
+  const logos = await Logos.attach("0x320CCb623b612Eef62F186AfF6b664377cb4260b");
 
   await backgroundLogoElement.toggleMint();
   await emoticonLogoElement.toggleMint();

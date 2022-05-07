@@ -269,10 +269,10 @@ function Mint(props: Props)  {
     <MainContainerStyles.Content>
 
       <MainContainerStyles.Row css={[MintStyles.mintRow]}>
-        <NftCard mint={mint} mintIsActive={backgroundMintIsActive} maxQuantity={10} example={BackgroundExample} contractAddress={BGBYL_CONTRACT_ADDRESS} key='background' header='Backgrounds' description={backgroundDesc} cost={BACKGROUND_PRICE} minted={backgroundNumMinted} supply={BACKGROUND_SUPPLY} adjustableQuantity={true} />
-        <NftCard mint={mint} mintIsActive={emoticonMintIsActive} maxQuantity={2} example={EmoticonExample} contractAddress={FGBL_CONTRACT_ADDRESS} key='emoticon' header='Emoticons' description={emoticonDesc} cost={EMOTICON_PRICE} minted={emoticonNumMinted} supply={EMOTICON_SUPPLY} adjustableQuantity={true} />
-        <NftCard mint={mint} mintIsActive={textMintIsActive} maxQuantity={2} example={TextExample} contractAddress={TBL_CONTRACT_ADDRESS} key='text' header='Text' description={textDesc} cost={TEXT_PRICE} minted={textNumMinted} supply={TEXT_SUPPLY} adjustableQuantity={true} />
-        <NftCard mint={mint} mintIsActive={logoMintIsActive} maxQuantity={1} example={ContainerExample} contractAddress={LOGO_CONTRACT_ADDRESS} key='container' header='Logo Containers' description={logoDesc} cost={LOGO_PRICE} minted={logoNumMinted} supply={LOGO_SUPPLY} adjustableQuantity={false} />
+        <NftCard mint={mint} mintIsActive={backgroundMintIsActive} maxQuantity={10} example={BackgroundExample} contractAddress={BGBYL_CONTRACT_ADDRESS} key='background' header='Backgrounds' description={backgroundDesc} cost={BACKGROUND_PRICE} minted={backgroundNumMinted} supply={BACKGROUND_SUPPLY} adjustableQuantity={true} openSeaLink='backgrounds-by-logo' />
+        <NftCard mint={mint} mintIsActive={emoticonMintIsActive} maxQuantity={2} example={EmoticonExample} contractAddress={FGBL_CONTRACT_ADDRESS} key='emoticon' header='Emoticons' description={emoticonDesc} cost={EMOTICON_PRICE} minted={emoticonNumMinted} supply={EMOTICON_SUPPLY} adjustableQuantity={true} openSeaLink='emoticons-by-logo' />
+        <NftCard mint={mint} mintIsActive={textMintIsActive} maxQuantity={2} example={TextExample} contractAddress={TBL_CONTRACT_ADDRESS} key='text' header='Text' description={textDesc} cost={TEXT_PRICE} minted={textNumMinted} supply={TEXT_SUPPLY} adjustableQuantity={true} openSeaLink='text-by-logo' />
+        <NftCard mint={mint} mintIsActive={logoMintIsActive} maxQuantity={1} example={ContainerExample} contractAddress={LOGO_CONTRACT_ADDRESS} key='container' header='Logo Containers' description={logoDesc} cost={LOGO_PRICE} minted={logoNumMinted} supply={LOGO_SUPPLY} adjustableQuantity={false} openSeaLink='deglomerate-logos' />
       </MainContainerStyles.Row>
 
     </MainContainerStyles.Content>

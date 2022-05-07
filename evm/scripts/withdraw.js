@@ -18,9 +18,9 @@ async function main() {
   const Logos = await hre.ethers.getContractFactory("Logos");
   const logos = await Logos.attach("0xcA2849e7a32BCa1cEe3eF511C05429c03860FDcf");
 
-  // await backgroundLogoElement.sendValue('', ethers.utils.parseEther('0.04'));
+  await backgroundLogoElement.sendValue('', ethers.utils.parseEther('0.1'));
   // await emoticonLogoElement.sendValue('', ethers.utils.parseEther('0.04'));
-  await textLogoElement.sendValue('0xf82D6B4454af9F8e38b7797984a86D87B3f32155', ethers.utils.parseEther('0.04'));
+  // await textLogoElement.sendValue('0xf82D6B4454af9F8e38b7797984a86D87B3f32155', ethers.utils.parseEther('0.04'));
   // await logos.sendValue('', ethers.utils.parseEther('0.04'));
 }
 

@@ -7,11 +7,6 @@ To start a local development server run:
 
 ### `npm start`
 
-To deploy to production run via github pages
-
-### `npm run deploy`
-
-You must then go to the repo at github.com -> Settings -> Pages and re-enter deglomerate.io in the Custom Domain section.
 
 ## Available Scripts
 
@@ -37,7 +32,5 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 

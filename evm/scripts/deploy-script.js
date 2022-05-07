@@ -259,7 +259,7 @@ async function main() {
   await textLogoElementDescriptor.setApprovedFontLinks(fonts);
   await emoticonLogoElementDescriptor.setApprovedFontLinks(fonts);
 
-  await backgroundLogoElement.toggleMint();
+  // await backgroundLogoElement.toggleMint();
   // await emoticonLogoElement.toggleMint();
   // await textLogoElement.toggleMint();
   // await logos.toggleMint();

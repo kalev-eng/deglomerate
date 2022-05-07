@@ -7,7 +7,7 @@ const hre = require("hardhat");
 
 async function main() {
   const BackgroundLogoElement = await hre.ethers.getContractFactory("BackgroundLogoElement");
-  const backgroundLogoElement = await BackgroundLogoElement.attach("0xF1622FAC4cab336379795b1C209C09996FAfD533");
+  const backgroundLogoElement = await BackgroundLogoElement.attach("0xfedf7d1f0bde821407B4906482e0d94CE2B04b1c");
   const contractAddress = '0xd65c5D035A35F41f31570887E3ddF8c3289EB920';
   const erc = await hre.ethers.getContractFactory("ERC721A");
   const ethTContract = await erc.attach(contractAddress);
@@ -20,17 +20,23 @@ async function main() {
     }
   }
   var distributionList = Array.from(owners);
+  console.log(distributionList.length);
+  
+  for (let i = 0; i < distributionList.length; i++) {
+    console.log(distributionList[i]);
+  }
   
   var thisBatch = [];
   for (let i = 0; i < distributionList.length; i++) {
     thisBatch.push(distributionList[i]);
-    if (thisBatch.size % 25 == 0) {
+    if (thisBatch.length % 25 == 0) {
       console.log('Airdropping for bucket...')
       console.log(thisBatch)
-      await backgroundLogoElement.mintAdmin(thisBatch, 1, { gasLimit : 1875000 });
+      // await backgroundLogoElement.mintAdmin(thisBatch, 1, { gasLimit : 1875000 });
       thisBatch = [];
     }
   }
+
 }
 
 // We recommend this pattern to be able to use async/await everywhere
