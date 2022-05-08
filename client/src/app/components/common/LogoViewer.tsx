@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 // react
 import React, {useEffect, useState} from 'react';
-import SVG, { Props as SVGProps } from 'react-inlinesvg';
 
 // redux data store
 import * as app from '../../dal/data/app';
@@ -70,7 +69,7 @@ function LogoViewer(props: Props)  {
         <div  css={[LogoViewerStyles.empty, css({ width: props.width, height: props.height })]} />
           :
         <div>
-          <SVG css={[LogoViewerStyles.container]} src={logo} width={props.width} title="logo" />
+          <iframe css={[LogoViewerStyles.container]} srcdoc={logo} width={props.width} height={props.height} frameBorder="0"></iframe>
           { props.downloadable && <MainContainerStyles.Row><a css={[LogoViewerStyles.downloadRow]} onClick={() => onClickDownload()}><img src={DownloadIcon} alt="logo" css={[LogoViewerStyles.download]} /></a></MainContainerStyles.Row> } 
         </div>
           :

@@ -48,6 +48,8 @@ function Configure(props: Props)  {
   const [logo, setLogo] = useState<Logo>(BASE_LOGO);
   const [logoView, setLogoView] = useState<Logo>(BASE_LOGO);
   const [metaData, setMetaData] = useState<MetaData[]>([]);
+
+  // owned tokens
   const [ownedTokenIds, setOwnedTokenIds] = useState<number[]>([]);
   const [ownedBgTokenIds, setOwnedBgTokenIds] = useState<Map<string, number[]>>(BASE_OWNED_BG_TOKENS);
   const [ownedTxtTokenIds, setOwnedTxtTokenIds] = useState<Map<string, number[]>>(BASE_OWNED_TXT_TOKENS);
@@ -111,7 +113,7 @@ function Configure(props: Props)  {
   }, [currentTokenId, logoDescriptorContract, account]);
 
   useEffect(() => {
-    const getOwnedElements = async () => {
+    const getOwnedTextElements = async () => {
       if (web3 && account !== '') {
         let ownedTxtTokens: Map<string, number[]> = new Map();
         for (const [contractAddress, ownedTokens] of ownedTxtTokenIds) {
@@ -133,16 +135,18 @@ function Configure(props: Props)  {
         setOwnedTxtTokenIds(ownedTxtTokens);
       }
     }
-    getOwnedElements();
+    getOwnedTextElements();
   }, [logoContract, account]);
 
 
   useEffect(() => {
-    const getOwnedElements = async () => {
+    const getOwnedBackgroundElements = async () => {
       if (web3 && account !== '') {
         let ownedBgTokens: Map<string, number[]> = new Map();
         for (const [contractAddress, ownedTokens] of ownedBgTokenIds) {
-          // get owned txt tokens
+          // get owned background tokens
+          // TODO txt abi is used since it contains all necessary methods
+          // may want to make better name for generic ABI
           const contract = new web3.eth.Contract(textAbi, contractAddress);
 
           const tokenIds: number[] = [];
@@ -160,7 +164,7 @@ function Configure(props: Props)  {
         setOwnedBgTokenIds(ownedBgTokens);
       }
     }
-    getOwnedElements();
+    getOwnedBackgroundElements();
   }, [logo.layers[0].contractAddress, logoContract, account]);
 
   const handleSetLogo = async () => {
@@ -296,7 +300,7 @@ function Configure(props: Props)  {
       };
       setLogo(updatedLogo);
       // show a blank logo if a non-owned tokenId is set
-      if (!getOwnedBgTokenIds().includes(Number(logo.layers[0].tokenId))) {
+      if (logo.layers[0].contractAddress !== NULL_ADDRESS && !getOwnedBgTokenIds().includes(Number(logo.layers[0].tokenId))) {
         setLogoView(BASE_LOGO)
       } else if (setView) {
         setLogoView(updatedLogo)
@@ -320,7 +324,7 @@ function Configure(props: Props)  {
       };
       setLogo(updatedLogo);
       // show a blank logo if a non-owned tokenId is set
-      if (!getOwnedTextTokenIds().includes(Number(logo.text.tokenId))) {
+      if (logo.text.contractAddress !== NULL_ADDRESS && !getOwnedTextTokenIds().includes(Number(logo.text.tokenId))) {
         setLogoView(BASE_LOGO)
       } else if (setView) {
         setLogoView(updatedLogo)

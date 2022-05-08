@@ -17,6 +17,11 @@ export interface LogoElement {
   value: string;
   font: string;
   fontLink: string;
+  sourceContract: string;
+  siteUrl: string;
+  collectionUrl: string;
+  twitterUrl: string;
+  discordUrl: string;
 };
 
 export interface Logo {
@@ -34,9 +39,9 @@ export interface MetaData {
 const BASE_LOGO: Logo = {
   width: 300,
   height: 300,
-  layers: [{contractAddress: NULL_ADDRESS, tokenId: 0, translateXDirection: 0, translateX: 0, translateYDirection: 0, translateY: 0, scaleDirection: 0, scaleMagnitude: 0, value: '', font: '', fontLink: ''},
-  {contractAddress: NULL_ADDRESS, tokenId: 1, translateXDirection: 0, translateX: 0, translateYDirection: 0, translateY: 0, scaleDirection: 0, scaleMagnitude: 0, value: '', font: '', fontLink: ''}],
-  text: {contractAddress: NULL_ADDRESS, tokenId: 0, translateXDirection: 0, translateX: 0, translateYDirection: 0, translateY: 0, scaleDirection: 0, scaleMagnitude: 0, value: '', font: '', fontLink: ''}
+  layers: [{contractAddress: NULL_ADDRESS, tokenId: 0, translateXDirection: 0, translateX: 0, translateYDirection: 0, translateY: 0, scaleDirection: 0, scaleMagnitude: 0, value: '', font: '', fontLink: '', sourceContract: '', siteUrl: '', collectionUrl: '', twitterUrl: '', discordUrl: ''},
+  {contractAddress: NULL_ADDRESS, tokenId: 1, translateXDirection: 0, translateX: 0, translateYDirection: 0, translateY: 0, scaleDirection: 0, scaleMagnitude: 0, value: '', font: '', fontLink: '', sourceContract: '', siteUrl: '', collectionUrl: '', twitterUrl: '', discordUrl: ''}],
+  text: {contractAddress: NULL_ADDRESS, tokenId: 0, translateXDirection: 0, translateX: 0, translateYDirection: 0, translateY: 0, scaleDirection: 0, scaleMagnitude: 0, value: '', font: '', fontLink: '', sourceContract: '', siteUrl: '', collectionUrl: '', twitterUrl: '', discordUrl: ''}
 };
 
 export { BASE_LOGO };

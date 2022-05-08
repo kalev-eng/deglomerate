@@ -19,7 +19,9 @@ import { Typography, Link } from '@mui/material';
 
 // json
 import TextAbi from '../../text.json';
+import LayerAbi from '../../layerDescriptor.json';
 const textAbi = JSON.parse(TextAbi);
+const layerAbi = JSON.parse(LayerAbi);
 
 interface Props {
   tokenId: number;
@@ -40,7 +42,10 @@ function AttributeViewer(props: Props)  {
         let dcLayers = [];
         for (let i = 0; i < logoLayers.length; i++) {
           const logoLayer = logoLayers[i];
-          dcLayers.push({contractAddress: logoLayer.contractAddress, tokenId: logoLayer.tokenId, translateXDirection: logoLayer.translateXDirection, translateX: logoLayer.translateX, translateYDirection: logoLayer.translateYDirection, translateY: logoLayer.translateY, scaleDirection: logoLayer.scaleDirection, scaleMagnitude: logoLayer.scaleMagnitude, value: '', font: '', fontLink: ''});
+          let layer = {contractAddress: logoLayer.contractAddress, tokenId: logoLayer.tokenId, translateXDirection: logoLayer.translateXDirection, translateX: logoLayer.translateX, translateYDirection: logoLayer.translateYDirection, translateY: logoLayer.translateY, scaleDirection: logoLayer.scaleDirection, scaleMagnitude: logoLayer.scaleMagnitude, value: '', font: '', fontLink: ''};
+          const layerDetails = await getLayerDetails(logoLayers[i].contractAddress);
+          layer = Object.assign({}, layer, layerDetails);
+          dcLayers.push(layer);
         }
         const txt = await getOwnedText(logoData.text.contractAddress, Number(logoData.text.tokenId));
         const _logo: Logo = { width: logoData.width != 0 ? logoData.width : 300,
@@ -53,6 +58,23 @@ function AttributeViewer(props: Props)  {
     };
     getAttributes();
   }, [logoDescriptorContract, props.tokenId]);
+
+  const getLayerDetails = async (contractAddress: string) => {
+    const layerContract = new web3.eth.Contract(layerAbi, contractAddress);
+    let sourceContract = '';
+    let siteUrl = '';
+    let collectionUrl = '';
+    let twitterUrl = '';
+    let discordUrl = '';
+    try {
+      sourceContract = await layerContract.methods.sourceContract().call();
+      siteUrl = await layerContract.methods.siteUrl().call();
+      collectionUrl = await layerContract.methods.collectionUrl().call();
+      twitterUrl = await layerContract.methods.twitterUrl().call();
+      discordUrl = await layerContract.methods.discordUrl().call();
+    } catch {}
+    return {'sourceContract': sourceContract, 'siteUrl': siteUrl, 'collectionUrl': collectionUrl, 'twitterUrl': twitterUrl, 'discordUrl': discordUrl};
+  }
 
   const getOwnedText = async (contractAddress: string, tokenId: number) => {
     let txt = {'txtVal': '', 'font': '', 'fontLink': ''};
@@ -85,10 +107,17 @@ function AttributeViewer(props: Props)  {
         <Typography css={[AppStyles.txt]} variant="body1" component="div">Height: {logo.height}</Typography>
       </MainContainerStyles.Row>
       {logo.layers.map((layer, index) => {
-        return (<MainContainerStyles.Row>
+        return (<div>
+              {layer.contractAddress !== NULL_ADDRESS && <MainContainerStyles.Row>
                   <Typography css={[AppStyles.txt]} variant="body1" component="div">{'Layer #' + index + ':'}</Typography>
-                  <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={'https://opensea.io/assets/' + layer.contractAddress + '/' + layer.tokenId} underline="hover" target="_blank" rel="noreferrer">{layer.contractAddress}</Link></Typography>
-                </MainContainerStyles.Row>)
+                  <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={'https://opensea.io/assets/' + (layer.sourceContract ? layer.sourceContract: layer.contractAddress) + '/' + layer.tokenId} underline="hover" target="_blank" rel="noreferrer">token</Link></Typography>
+                  {layer.collectionUrl && <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={layer.collectionUrl} underline="hover" target="_blank" rel="noreferrer">collection</Link></Typography>}
+                  {layer.discordUrl && <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={layer.discordUrl} underline="hover" target="_blank" rel="noreferrer">discord</Link></Typography>}
+                  {layer.twitterUrl && <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={layer.twitterUrl} underline="hover" target="_blank" rel="noreferrer">twitter</Link></Typography>}
+                  {layer.siteUrl && <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={layer.siteUrl} underline="hover" target="_blank" rel="noreferrer">website</Link></Typography>}
+                </MainContainerStyles.Row>
+                }
+              </div>)
         })}
       <MainContainerStyles.Row>
         <Typography css={[AppStyles.txt]} variant="body1" component="div">Text:</Typography>

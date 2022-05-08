@@ -166,6 +166,12 @@ async function main() {
 
   await backgroundLogoElement.setDescriptorAddress(backgroundLogoElementDescriptor.address);
 
+  const TerraformLogoElement = await hre.ethers.getContractFactory("TerraformLogoElement", {
+    libraries: {},
+  });
+  const terraformLogoElement = await TerraformLogoElement.deploy();
+  console.log("terraformLogoElement deployed to:", terraformLogoElement.address);
+
   const EmoticonLogoElement = await hre.ethers.getContractFactory("EmoticonLogoElement", {
     libraries: {},
   });
@@ -254,15 +260,15 @@ async function main() {
 
   await logos.setDescriptorAddress(logoDescriptor.address);
 
-  await logoDescriptor.setApprovedContracts([backgroundLogoElement.address, emoticonLogoElement.address, textLogoElement.address, ethTerrestrialLogoElement.address, nounLogoElement.address]);
+  await logoDescriptor.setApprovedContracts([backgroundLogoElement.address, emoticonLogoElement.address, textLogoElement.address, ethTerrestrialLogoElement.address, nounLogoElement.address, terraformLogoElement.address]);
   const fonts = ['https://fonts.googleapis.com/css?family=Rubik', 'https://fonts.googleapis.com/css?family=Playfair+Display', 'https://fonts.googleapis.com/css?family=Oswald', 'https://fonts.googleapis.com/css?family=Work+Sans', 'https://fonts.googleapis.com/css?family=Krona+One', 'https://fonts.googleapis.com/css?family=Italiana', 'https://fonts.googleapis.com/css?family=Federo', 'https://fonts.googleapis.com/css?family=Caudex', 'https://fonts.googleapis.com/css?family=VT323', 'https://fonts.googleapis.com/css?family=Faster+One'];
   await textLogoElementDescriptor.setApprovedFontLinks(fonts);
   await emoticonLogoElementDescriptor.setApprovedFontLinks(fonts);
 
-  // await backgroundLogoElement.toggleMint();
-  // await emoticonLogoElement.toggleMint();
-  // await textLogoElement.toggleMint();
-  // await logos.toggleMint();
+  await backgroundLogoElement.toggleMint();
+  await emoticonLogoElement.toggleMint();
+  await textLogoElement.toggleMint();
+  await logos.toggleMint();
 }
 
 // We recommend this pattern to be able to use async/await everywhere

@@ -2,6 +2,9 @@
 import { jsx, css } from '@emotion/react';
 import styled from '@emotion/styled';
 
+export const frame = css`
+  
+`;
 
 export const container = css`
   margin: auto;
