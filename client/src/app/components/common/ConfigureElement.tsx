@@ -37,7 +37,7 @@ const ExpandMore = styled((props) => {
 }));
 
 function ConfigureElement(props: Props)  {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(props.label === 'Text' ? true: false);
 
   const handleExpand = () => {
     setExpanded(!expanded);
