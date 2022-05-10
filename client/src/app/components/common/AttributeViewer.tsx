@@ -121,7 +121,7 @@ function AttributeViewer(props: Props)  {
         })}
       <MainContainerStyles.Row>
         <Typography css={[AppStyles.txt]} variant="body1" component="div">Text:</Typography>
-        <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={'https://opensea.io/assets/' + logo.text.contractAddress + '/' + logo.text.tokenId} underline="hover" target="_blank" rel="noreferrer">{logo.text.contractAddress}</Link></Typography>
+        <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={'https://opensea.io/assets/' + logo.text.contractAddress + '/' + logo.text.tokenId} underline="hover" target="_blank" rel="noreferrer">token</Link></Typography>
       </MainContainerStyles.Row>
     </div>
   )

@@ -1,5 +1,8 @@
 
+Project information: https://deglomerate.gitbook.io/deglomerate/
+
 ## Getting Started
+
 This evm development environment uses hardhat.
 
 To get your environment set up run: 

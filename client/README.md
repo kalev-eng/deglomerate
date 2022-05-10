@@ -1,3 +1,5 @@
+Project information: https://deglomerate.gitbook.io/deglomerate/
+
 ## Getting Started
 To get your environment set up run: 
 

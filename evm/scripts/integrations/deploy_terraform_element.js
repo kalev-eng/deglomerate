@@ -14,8 +14,6 @@ async function main() {
 
   const LogoDescriptor = await hre.ethers.getContractFactory("LogoDescriptor");
   const logoDescriptor = await LogoDescriptor.attach("0xeA55c5579e1ccE3e52217493788f2a909e64f64F");
-
-  await logoDescriptor.setApprovedContracts([terraformLogoElement.address]);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
