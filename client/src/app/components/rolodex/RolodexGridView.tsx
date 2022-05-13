@@ -107,10 +107,10 @@ function RolodexGridView(props: Props)  {
   return (
     <MainContainerStyles.Content>
       <MainContainerStyles.RowCenter css={[RolodexStyles.icons]}>
-        <Tooltip title="Previous (skip blank Logos)" placement="top">
+        <Tooltip title="Previous (based on search criteria)" placement="top">
           <Button variant="outlined" css={[AppStyles.txt, AppStyles.link]} onClick={() => previousConfiguredLogos()} size="large" disableElevation>&lt;&lt;</Button>
         </Tooltip>  
-        <Tooltip title="Next (skip blank Logos)" placement="top">
+        <Tooltip title="Next (based on search criteria)" placement="top">
           <Button variant="outlined" css={[AppStyles.txt, AppStyles.link]} onClick={() => nextConfiguredLogos()} size="large" disableElevation>&gt;&gt;</Button>
         </Tooltip>
       </MainContainerStyles.RowCenter>
