@@ -19,7 +19,7 @@ export const Row = styled.div`
 export const RowCenter = styled.div`
   display: flex;
   justify-content: center;
-  gap: 60px;
+  gap: 80px;
   width: 100%;
   position: relative;
   margin-top: 10px;

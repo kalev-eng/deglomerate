@@ -13,6 +13,10 @@ export const txt = css`
   user-select: none;
 `;
 
+export const selectable = css`
+  user-select: all;
+`;
+
 export const link = css`
   color: black;
   text-decoration: none;

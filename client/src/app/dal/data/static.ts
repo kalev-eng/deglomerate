@@ -31,9 +31,11 @@ const NOUN_CONTRACT_ADDRESS = '0xe039608E695D21aB11675EBBA00261A0e750526c';
 const TERRAFORM_CONTRACT_ADDRESS = '0x54B8d8E2455946f2A5B8982283f2359812e815ce';
 
 // const SEARCH_CONTRACT_ADDRESS = '0x505FAeDB47cb08E0A895F90C305ff504b9d08343';
-const SEARCH_CONTRACT_ADDRESS = '0x56fC17a65ccFEC6B7ad0aDe9BD9416CB365B9BE8';
+// const SEARCH_CONTRACT_ADDRESS = '0x56fC17a65ccFEC6B7ad0aDe9BD9416CB365B9BE8';
+const SEARCH_CONTRACT_ADDRESS = '0x8fC8CFB7f7362E44E472c690A6e025B80E406458';
 
 const NULL_ADDRESS = '0x0000000000000000000000000000000000000000';
+const MAX_UINT = '115792089237316195423570985008687907853269984665640564039457584007913129639935';
 
 // mainnet
 // const CHAIN_ID = 1;
@@ -67,7 +69,7 @@ const FONT_LINK = 'https://fonts.googleapis.com/css?family=';
 
 // metadata
 const META_DATA_KEYS: string[] = ['role', 'name', 'twitter url', 'discord'];
-const ROLES: string[] = ['artist', 'collector', 'community', 'community manager', 'discord builder', 'mod', 'solidity developer', 'ui developer'];
+const ROLES: string[] = ['artist', 'collector', 'community', 'community manager', 'discord builder', 'marketing', 'mod', 'solidity developer', 'ui developer'];
 
 export { LOGO_CONTRACT_ADDRESS };
 export { LOGO_DESCRIPTOR_CONTRACT_ADDRESS };
@@ -87,7 +89,7 @@ export { ETHTERRESTRIAL_LOGO_CONTRACT_ADDRESS };
 export { NOUN_CONTRACT_ADDRESS };
 export { TERRAFORM_CONTRACT_ADDRESS };
 export { SEARCH_CONTRACT_ADDRESS };
-export { NULL_ADDRESS };
+export { NULL_ADDRESS, MAX_UINT };
 
 export { CHAIN_ID };
 

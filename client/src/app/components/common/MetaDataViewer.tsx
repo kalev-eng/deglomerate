@@ -60,7 +60,7 @@ function MetaDataViewer(props: Props)  {
                   : mdElement.key === 'twitter url' && mdElement.value !== '' ? 
                   <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={withHttp(mdElement.value)} underline="hover" target="_blank" rel="noreferrer">{mdElement.value}</Link></Typography>
                   : mdElement.key === 'discord' && mdElement.value !== '' ? 
-                  <Typography css={[AppStyles.txt]} variant="body1" component="div">{mdElement.value}</Typography>
+                  <Typography css={[AppStyles.txt, AppStyles.selectable]} variant="body1" component="div">{mdElement.value}</Typography>
                   : mdElement.key === 'url' && mdElement.value !== '' ? 
                   <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={withHttp(mdElement.value)} underline="hover" target="_blank" rel="noreferrer">{mdElement.value}</Link></Typography>
                   : mdElement.key === 'ens' && mdElement.value !== '' ?

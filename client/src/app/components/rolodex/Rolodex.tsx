@@ -7,14 +7,21 @@ import { useSelector } from 'react-redux';
 import * as app from '../../dal/data/app';
 
 // components
+import { RolodexGridView } from './RolodexGridView';
+import { RolodexIndividualView } from './RolodexIndividualView';
 import { LogoViewer } from '../common/LogoViewer';
 import { MetaDataViewer } from '../common/MetaDataViewer';
 import { AttributeViewer } from '../common/AttributeViewer';
 
 // styles
 import * as AppStyles from '../../styles/App';
-import { TextField, Button, Tooltip } from '@mui/material';
+import * as RolodexStyles from '../../styles/Rolodex';
+import { IconButton, TextField, Button, Tooltip } from '@mui/material';
 import * as MainContainerStyles from '../../styles/MainContainer';
+
+// icons
+import GridViewIcon from '@mui/icons-material/GridView';
+import CropSquareIcon from '@mui/icons-material/CropSquare';
 
 interface Props {};
 
@@ -22,6 +29,8 @@ function Rolodex(props: Props)  {
   // contracts
   const logoContract = useSelector(app.selectLogoContract);
   const searchContract = useSelector(app.selectSearchContract);
+
+  const [view, setView] = useState<string>('grid');
 
   const [maxTokenId, setMaxTokenId] = useState<number>(0);
   const [tokenId, setTokenId] = useState<number>(0);
@@ -39,65 +48,30 @@ function Rolodex(props: Props)  {
     init();
   }, [logoContract]);
 
-  useEffect(() => {
-    const init = async () => {
-      if (logoContract !== null) {
-        const totalSupply = await logoContract.methods.totalSupply().call();
-        setMaxTokenId(Number(totalSupply));
-      }
-    };
-    init();
-  }, [logoContract]);
-
   const handleTokenIdChange = (e) => {
     setTokenId(e.target.value);
   }
 
-
-  
-
-  const previousConfiguredLogo = async () => {
-    if (searchContract) {
-      const nxtTokenId = await searchContract.methods.getPreviousConfiguredLogo(tokenId > 0 ? tokenId - 1: tokenId, 0).call();
-      setTokenId(Number(nxtTokenId));
-      setDisplayTokenId(nxtTokenId !== '' ? Number(nxtTokenId): 0);
-    }
+  const clickedGridView = () => {
+    setView('grid');
   }
 
-  const nextConfiguredLogo = async () => {
-    if (searchContract) {
-      const nxtTokenId = await searchContract.methods.getNextConfiguredLogo(tokenId + 1, maxTokenId).call();
-      setTokenId(Number(nxtTokenId));
-      setDisplayTokenId(nxtTokenId !== '' ? Number(nxtTokenId): 0);
-    }
-  }
-
-  const updateLogo = () => {
-    setDisplayTokenId(tokenId !== '' ? Number(tokenId): 0);
+  const clickedIndiviualView = () => {
+    setView('individual');
   }
 
   return (
     <MainContainerStyles.Content>
-      <MainContainerStyles.RowCenter>
-        <Tooltip title="Previous Logo (skip blank Logos)" placement="top">
-          <Button variant="outlined" css={[AppStyles.txt, AppStyles.link]} onClick={() => previousConfiguredLogo()} size="large" disableElevation>&lt;&lt;</Button>
-        </Tooltip>  
-        <TextField css={[AppStyles.txt]} id="tokenId" type="number" inputProps={{ inputMode: 'numeric', min: 0 }} label="Token Id" variant="outlined" onChange={(e) => handleTokenIdChange(e)} value={tokenId} />
-        <Button variant="outlined" css={[AppStyles.txt, AppStyles.link]} onClick={() => updateLogo()} size="large" disableElevation>View Logo</Button>
-        <Tooltip title="Next Logo (skip blank Logos)" placement="top">
-          <Button variant="outlined" css={[AppStyles.txt, AppStyles.link]} onClick={() => nextConfiguredLogo()} size="large" disableElevation>&gt;&gt;</Button>
-        </Tooltip>
+      <MainContainerStyles.RowCenter css={[RolodexStyles.icons]}>
+        <IconButton onClick={() => clickedGridView()} css={[AppStyles.link]} component="span">
+          <GridViewIcon /> 
+        </IconButton>
+        <IconButton onClick={() => clickedIndiviualView()} css={[AppStyles.link]} component="span">
+          <CropSquareIcon />
+        </IconButton>
       </MainContainerStyles.RowCenter>
-      <MainContainerStyles.RowCenter>
-        <LogoViewer width={600} height={600} tokenId={displayTokenId} downloadable={true}/>
-      </MainContainerStyles.RowCenter>
-      <MainContainerStyles.RowCenter>
-        <MetaDataViewer tokenId={tokenId} />
-        <AttributeViewer tokenId={tokenId} />
-      </MainContainerStyles.RowCenter>
-      <MainContainerStyles.RowCenter>
-        
-      </MainContainerStyles.RowCenter>
+      { view === 'grid' && <RolodexGridView/> }
+      { view === 'individual' && <RolodexIndividualView/> }
     </MainContainerStyles.Content>
   )
 };
