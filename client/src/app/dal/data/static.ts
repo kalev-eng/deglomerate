@@ -66,8 +66,8 @@ const FONTS: string[] = ['Helvetica', 'Rubik', 'Playfair Display', 'Oswald', 'Wo
 const FONT_LINK = 'https://fonts.googleapis.com/css?family=';
 
 // metadata
-const META_DATA_KEYS: string[] = ['role', 'name', 'twitter url', 'discord username'];
-const ROLES: string[] = ['artist', 'collector', 'community manager', 'discord builder', 'mod', 'solidity developer', 'ui developer'];
+const META_DATA_KEYS: string[] = ['role', 'name', 'twitter url', 'discord'];
+const ROLES: string[] = ['artist', 'collector', 'community', 'community manager', 'discord builder', 'mod', 'solidity developer', 'ui developer'];
 
 export { LOGO_CONTRACT_ADDRESS };
 export { LOGO_DESCRIPTOR_CONTRACT_ADDRESS };
