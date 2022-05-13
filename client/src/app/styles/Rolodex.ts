@@ -12,3 +12,7 @@ export const grid = css`
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 2.8vw;
 `;
+
+export const selectField = css`
+  width: 400px;
+`;

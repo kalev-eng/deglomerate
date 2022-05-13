@@ -16,41 +16,22 @@ import { AttributeViewer } from '../common/AttributeViewer';
 // styles
 import * as AppStyles from '../../styles/App';
 import * as RolodexStyles from '../../styles/Rolodex';
-import { IconButton, TextField, Button, Tooltip } from '@mui/material';
+import { IconButton, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import * as MainContainerStyles from '../../styles/MainContainer';
 
 // icons
 import GridViewIcon from '@mui/icons-material/GridView';
 import CropSquareIcon from '@mui/icons-material/CropSquare';
 
+// static
+import { ROLODEX_SEARCH_BY } from '../../dal/data/static';
+
 interface Props {};
 
 function Rolodex(props: Props)  {
-  // contracts
-  const logoContract = useSelector(app.selectLogoContract);
-  const searchContract = useSelector(app.selectSearchContract);
-
   const [view, setView] = useState<string>('grid');
 
-  const [maxTokenId, setMaxTokenId] = useState<number>(0);
-  const [tokenId, setTokenId] = useState<number>(0);
-  const [displayTokenId, setDisplayTokenId] = useState<number>(0);
-  const [logoView, setLogoView] = useState<number>(0);
-  const [attributes, setAttributes] = useState<Object>({});
-
-  useEffect(() => {
-    const init = async () => {
-      if (logoContract !== null) {
-        const totalSupply = await logoContract.methods.totalSupply().call();
-        setMaxTokenId(Number(totalSupply));
-      }
-    };
-    init();
-  }, [logoContract]);
-
-  const handleTokenIdChange = (e) => {
-    setTokenId(e.target.value);
-  }
+  const [searchBy, setSearchyBy] = useState<string>('has logo layers configured');
 
   const clickedGridView = () => {
     setView('grid');
@@ -58,6 +39,10 @@ function Rolodex(props: Props)  {
 
   const clickedIndiviualView = () => {
     setView('individual');
+  }
+
+  const handleSearchChange = (e) => {
+    setSearchyBy(e.target.value);
   }
 
   return (
@@ -70,8 +55,25 @@ function Rolodex(props: Props)  {
           <CropSquareIcon />
         </IconButton>
       </MainContainerStyles.RowCenter>
-      { view === 'grid' && <RolodexGridView/> }
-      { view === 'individual' && <RolodexIndividualView/> }
+      <MainContainerStyles.RowCenter>
+        <FormControl>
+          <InputLabel id="searchby-select-label">Search by</InputLabel>
+          <Select
+            css={[AppStyles.txt, RolodexStyles.selectField]}
+            labelId="searchby-label"
+            id="searchby-select"
+            label="Search by"
+            value={searchBy}
+            onChange={(e) => handleSearchChange(e)}
+            >
+          {[...ROLODEX_SEARCH_BY.keys()].map(key => {
+            return <MenuItem css={[AppStyles.txt]} value={key}>{key}</MenuItem>;
+          })}
+          </Select>
+        </FormControl>
+      </MainContainerStyles.RowCenter>
+      { view === 'grid' && <RolodexGridView searchByKey={ROLODEX_SEARCH_BY.get(searchBy)[0]} searchByValue={ROLODEX_SEARCH_BY.get(searchBy)[1]} /> }
+      { view === 'individual' && <RolodexIndividualView searchByKey={ROLODEX_SEARCH_BY.get(searchBy)[0]} searchByValue={ROLODEX_SEARCH_BY.get(searchBy)[1]}/> }
     </MainContainerStyles.Content>
   )
 };

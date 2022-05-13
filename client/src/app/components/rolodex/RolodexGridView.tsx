@@ -20,7 +20,10 @@ import { TextField, Button, Tooltip } from '@mui/material';
 // static
 import { MAX_UINT } from '../../dal/data/static';
 
-interface Props {};
+interface Props {
+  searchByKey: string;
+  searchByValue: string;
+};
 
 function RolodexGridView(props: Props)  {
   // contracts
@@ -43,26 +46,41 @@ function RolodexGridView(props: Props)  {
   useEffect(() => {
     const init = async () => {
       if (searchContract !== null && maxTokenId !== 0) {
-        const nxtTokenIds = await searchContract.methods.getNextConfiguredLogos(4, 'visual', 0, maxTokenId).call();
+        const nxtTokenIds = await searchContract.methods.getNextConfiguredLogos(4, props.searchByKey, props.searchByValue, 0, maxTokenId).call();
         parseAndSetTokenIds(nxtTokenIds);
       }
     };
     init();
   }, [searchContract, maxTokenId]);
+
+  useEffect(() => {
+    const search = async () => {
+      if (searchContract !== null) {
+        setTokenIds([]);
+        const nxtTokenIds = await searchContract.methods.getNextConfiguredLogos(4, props.searchByKey, props.searchByValue, 0, maxTokenId).call();
+        parseAndSetTokenIds(nxtTokenIds);
+      }
+    };
+    search();
+  }, [props.searchByKey, props.searchByValue]);
   
   
   const previousConfiguredLogos = async () => {
     if (searchContract) {
-      const tokenId = tokenIds[0];
-      const nxtTokenIds = await searchContract.methods.getPreviousConfiguredLogos(tokenId >= 4 ? 4: tokenId, 'visual', tokenId > 0 ? tokenId - 1: tokenId, 0).call();
+      const nxtTokenId = tokenIds.length > 0 ? (tokenIds[0] > 0 ? tokenIds[0] - 1: 0) : 0;
+      // edge case when pressing previous and tokenId 0 is already fetched
+      if (tokenIds.includes(nxtTokenId)) {
+        return;
+      }
+      const nxtTokenIds = await searchContract.methods.getPreviousConfiguredLogos(nxtTokenId >= 3 ? 4: nxtTokenId + 1, props.searchByKey, props.searchByValue, nxtTokenId, 0).call();
       parseAndSetTokenIds(nxtTokenIds);
     }
   }
 
   const nextConfiguredLogos = async () => {
     if (searchContract) {
-      const tokenId = tokenIds[tokenIds.length - 1];
-      const nxtTokenIds = await searchContract.methods.getNextConfiguredLogos(4, 'visual', tokenId + 1, maxTokenId).call();
+      const nxtTokenId = tokenIds.length > 0 ? tokenIds[tokenIds.length - 1] + 1 : 0;
+      const nxtTokenIds = await searchContract.methods.getNextConfiguredLogos(4, props.searchByKey, props.searchByValue, nxtTokenId, maxTokenId).call();
       parseAndSetTokenIds(nxtTokenIds);
     }
   }

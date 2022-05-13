@@ -32,7 +32,7 @@ const TERRAFORM_CONTRACT_ADDRESS = '0x54B8d8E2455946f2A5B8982283f2359812e815ce';
 
 // const SEARCH_CONTRACT_ADDRESS = '0x505FAeDB47cb08E0A895F90C305ff504b9d08343';
 // const SEARCH_CONTRACT_ADDRESS = '0x56fC17a65ccFEC6B7ad0aDe9BD9416CB365B9BE8';
-const SEARCH_CONTRACT_ADDRESS = '0x8fC8CFB7f7362E44E472c690A6e025B80E406458';
+const SEARCH_CONTRACT_ADDRESS = '0x8D81A3DCd17030cD5F23Ac7370e4Efb10D2b3cA4';
 
 const NULL_ADDRESS = '0x0000000000000000000000000000000000000000';
 const MAX_UINT = '115792089237316195423570985008687907853269984665640564039457584007913129639935';
@@ -69,7 +69,20 @@ const FONT_LINK = 'https://fonts.googleapis.com/css?family=';
 
 // metadata
 const META_DATA_KEYS: string[] = ['role', 'name', 'twitter url', 'discord'];
-const ROLES: string[] = ['artist', 'collector', 'community', 'community manager', 'discord builder', 'marketing', 'mod', 'solidity developer', 'ui developer'];
+const ROLES: string[] = ['artist', 'collector', 'community manager', 'discord builder', 'mod', 'marketing', 'full-stack developer', 'solidity developer', 'ui developer', 'community'];
+const ROLODEX_SEARCH_BY: Map<string, string[]> = new Map([['has logo layers configured', ['layers', '']],
+                                                    ['has any role configured', ['role', '']],
+                                                    ['has role of artist', ['role', 'artist']],
+                                                    ['has role of collector', ['role', 'collector']],
+                                                    ['has role of community manager', ['role', 'community manager']],
+                                                    ['has role of discord builder', ['role', 'discord builder']],
+                                                    ['has role of mod', ['role', 'mod']],
+                                                    ['has role of marketing', ['role', 'marketing']],
+                                                    ['has role of full-stack developer', ['role', 'full-stack developer']],
+                                                    ['has role of solidity developer', ['role', 'solidity developer']],
+                                                    ['has role of ui developer', ['role', 'ui developer']],
+                                                    ['has role of community', ['role', 'community']],
+                                                  ]);
 
 export { LOGO_CONTRACT_ADDRESS };
 export { LOGO_DESCRIPTOR_CONTRACT_ADDRESS };
@@ -94,4 +107,4 @@ export { NULL_ADDRESS, MAX_UINT };
 export { CHAIN_ID };
 
 export { BACKGROUND_ELEMENTS, FOREGROUND_ELEMENTS, TEXT_ELEMENTS, BASE_OWNED_TXT_TOKENS, BASE_OWNED_BG_TOKENS, FONTS, FONT_LINK };
-export { META_DATA_KEYS, ROLES };
+export { META_DATA_KEYS, ROLES, ROLODEX_SEARCH_BY };

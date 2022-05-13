@@ -19,7 +19,10 @@ import * as MainContainerStyles from '../../styles/MainContainer';
 // static
 import { MAX_UINT } from '../../dal/data/static';
 
-interface Props {};
+interface Props {
+  searchByKey: string;
+  searchByValue: string;
+};
 
 function RolodexIndividualView(props: Props)  {
   // contracts
@@ -46,20 +49,36 @@ function RolodexIndividualView(props: Props)  {
     setTokenId(e.target.value);
   }
 
+  useEffect(() => {
+    const search = async () => {
+      if (searchContract !== null) {
+        const nxtTokenId = await searchContract.methods.getNextConfiguredLogo(props.searchByKey, props.searchByValue, 0, maxTokenId).call();
+        parseAndSetTokenId(nxtTokenId);
+      }
+    };
+    search();
+  }, [props.searchByKey, props.searchByValue]);
+
   const previousConfiguredLogo = async () => {
     if (searchContract) {
-      const nxtTokenId = await searchContract.methods.getPreviousConfiguredLogo('visual', tokenId > 0 ? tokenId - 1: tokenId, 0).call();
-      setTokenId(nxtTokenId != MAX_UINT ? Number(nxtTokenId) : 0);
-      setDisplayTokenId(nxtTokenId !== '' && nxtTokenId != MAX_UINT ? Number(nxtTokenId): 0);
+      const nxtTokenId = await searchContract.methods.getPreviousConfiguredLogo(props.searchByKey, props.searchByValue, tokenId > 0 ? tokenId - 1: tokenId, 0).call();
+      parseAndSetTokenId(nxtTokenId);
     }
   }
 
   const nextConfiguredLogo = async () => {
     if (searchContract) {
-      const nxtTokenId = await searchContract.methods.getNextConfiguredLogo('visual', tokenId + 1, maxTokenId).call();
-      setTokenId(nxtTokenId != MAX_UINT ? Number(nxtTokenId) : 0);
-      setDisplayTokenId(nxtTokenId !== '' && nxtTokenId != MAX_UINT ? Number(nxtTokenId): 0);
+      const nxtTokenId = await searchContract.methods.getNextConfiguredLogo(props.searchByKey, props.searchByValue, tokenId + 1, maxTokenId).call();
+      parseAndSetTokenId(nxtTokenId);
     }
+  }
+
+  const parseAndSetTokenId = (nxtTokenId: string) => {
+    if (nxtTokenId === MAX_UINT) {
+      alert('No additional logos meet the search criteria.');
+    }
+    setTokenId(nxtTokenId != MAX_UINT ? Number(nxtTokenId) : 0);
+    setDisplayTokenId(nxtTokenId !== '' && nxtTokenId != MAX_UINT ? Number(nxtTokenId): 0);
   }
 
   const updateLogo = () => {
@@ -69,12 +88,12 @@ function RolodexIndividualView(props: Props)  {
   return (
     <MainContainerStyles.Content>
       <MainContainerStyles.RowCenter>
-        <Tooltip title="Previous Logo (skip blank Logos)" placement="top">
+        <Tooltip title="Previous Logo (based on search criteria)" placement="top">
           <Button variant="outlined" css={[AppStyles.txt, AppStyles.link]} onClick={() => previousConfiguredLogo()} size="large" disableElevation>&lt;&lt;</Button>
         </Tooltip>  
         <TextField css={[AppStyles.txt]} id="tokenId" type="number" inputProps={{ inputMode: 'numeric', min: 0 }} label="Token Id" variant="outlined" onChange={(e) => handleTokenIdChange(e)} value={tokenId} />
         <Button variant="outlined" css={[AppStyles.txt, AppStyles.link]} onClick={() => updateLogo()} size="large" disableElevation>View Logo</Button>
-        <Tooltip title="Next Logo (skip blank Logos)" placement="top">
+        <Tooltip title="Next Logo (based on search criteria)" placement="top">
           <Button variant="outlined" css={[AppStyles.txt, AppStyles.link]} onClick={() => nextConfiguredLogo()} size="large" disableElevation>&gt;&gt;</Button>
         </Tooltip>
       </MainContainerStyles.RowCenter>

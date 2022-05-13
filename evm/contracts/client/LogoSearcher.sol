@@ -21,64 +21,69 @@ contract LogoSearcher {
     descriptor = ILogoDescriptor(_address);
   }
 
-  function getNextConfiguredLogos(uint256 quantity, string memory configuredAttr, uint256 startTokenId, uint256 endTokenId) public returns (uint256[] memory) {
+  function getNextConfiguredLogos(uint256 quantity, string memory configuredAttr, string memory configuredAttrVal, uint256 startTokenId, uint256 endTokenId) public returns (uint256[] memory) {
     uint256[] memory tokenIds = new uint256[](quantity);
     for (uint i; i < quantity; i++) {
-      tokenIds[i] = getNextConfiguredLogo(configuredAttr, startTokenId + i, endTokenId);
+      if (startTokenId != type(uint256).max && startTokenId <= endTokenId) {
+        tokenIds[i] = getNextConfiguredLogo(configuredAttr, configuredAttrVal, startTokenId, endTokenId);
+        startTokenId = tokenIds[i] != type(uint256).max ? tokenIds[i] + 1: type(uint256).max;
+      } else {
+        tokenIds[i] = type(uint256).max;
+      }
     }
     return tokenIds;
   }
 
-  function getPreviousConfiguredLogos(uint256 quantity, string memory configuredAttr, uint256 startTokenId, uint256 endTokenId) public returns (uint256[] memory) {
+  function getPreviousConfiguredLogos(uint256 quantity, string memory configuredAttr, string memory configuredAttrVal, uint256 startTokenId, uint256 endTokenId) public returns (uint256[] memory) {
     uint256[] memory tokenIds = new uint256[](quantity);
     for (uint i; i < quantity; i++) {
-      tokenIds[i] = getPreviousConfiguredLogo(configuredAttr, startTokenId - i, endTokenId);
+      if (startTokenId != type(uint256).max && startTokenId >= endTokenId) {
+        tokenIds[i] = getPreviousConfiguredLogo(configuredAttr, configuredAttrVal, startTokenId, endTokenId);
+        startTokenId = tokenIds[i] != type(uint256).max && tokenIds[i] > 0 ? tokenIds[i] - 1: type(uint256).max;
+      } else {
+        tokenIds[i] = type(uint256).max;
+      }
     }
     return tokenIds;
   }
 
-  function getNextConfiguredLogo(string memory configuredAttr, uint256 startTokenId, uint256 endTokenId) public returns (uint256) {
+  function getNextConfiguredLogo(string memory configuredAttr, string memory configuredAttrVal, uint256 startTokenId, uint256 endTokenId) public returns (uint256) {
     for (uint i = startTokenId; i <= endTokenId; i++) {
-      if (equals(configuredAttr, 'visual')) {
-        Model.LogoElement[] memory layers = descriptor.getLayers(i);
-        for (uint j; j < layers.length; j++) {
-          if (layers[j].contractAddress != address(0x0)) {
-            return i;
-          }
-        }
-        Model.LogoElement memory text = descriptor.getTextElement(i);
-        if (text.contractAddress != address(0x0)) {
-          return i;
-        }
-      } else {
-        if (!equals(descriptor.metaData(i, configuredAttr), '')) {
-          return i;
-        }
+      if (logoIsConfigured(i, configuredAttr, configuredAttrVal)) {
+        return i;
       }
     }
     return type(uint256).max;
   }
 
-  function getPreviousConfiguredLogo(string memory configuredAttr, uint256 startTokenId, uint256 endTokenId) public returns (uint256) {
+  function getPreviousConfiguredLogo(string memory configuredAttr,  string memory configuredAttrVal, uint256 startTokenId, uint256 endTokenId) public returns (uint256) {
     for (uint i = startTokenId; i >= endTokenId; i--) {
-      if (equals(configuredAttr, 'visual')) {
-        Model.LogoElement[] memory layers = descriptor.getLayers(i);
-        for (uint j; j < layers.length; j++) {
-          if (layers[j].contractAddress != address(0x0)) {
-            return i;
-          }
-        }
-        Model.LogoElement memory text = descriptor.getTextElement(i);
-        if (text.contractAddress != address(0x0)) {
-          return i;
-        }
-      } else {
-        if (!equals(descriptor.metaData(i, configuredAttr), '')) {
-          return i;
-        }
+      if (logoIsConfigured(i, configuredAttr, configuredAttrVal)) {
+        return i;
       }
     }
     return type(uint256).max;
+  }
+
+  function logoIsConfigured(uint256 tokenId, string memory configuredAttr,  string memory configuredAttrVal) public returns (bool) {
+    if (equals(configuredAttr, 'layers')) {
+      Model.LogoElement[] memory layers = descriptor.getLayers(tokenId);
+      for (uint j; j < layers.length; j++) {
+        if (layers[j].contractAddress != address(0x0)) {
+          return true;
+        }
+      }
+      Model.LogoElement memory text = descriptor.getTextElement(tokenId);
+      if (text.contractAddress != address(0x0)) {
+        return true;
+      }
+    } else {
+      string memory metaDataVal = descriptor.metaData(tokenId, configuredAttr);
+      if ((!equals(configuredAttrVal, '') && equals(metaDataVal, configuredAttrVal)) || (equals(configuredAttrVal, '') && !equals(metaDataVal, ''))) {
+        return true;
+      }
+    }
+    return false;
   }
 
   function equals(string memory a, string memory b) public pure returns (bool) {
