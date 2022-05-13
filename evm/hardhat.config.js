@@ -48,8 +48,8 @@ module.exports = {
       gasPrice: 5000000000
     },
     // mainnet: {
-    //  url: `https://mainnet.infura.io/v3/${process.env.MAINNET_INFURA_API_KEY}`,
-    //  accounts: [`0x${process.env.MAINNET_PRIVATE_KEY}`],
+      // url: `https://mainnet.infura.io/v3/${process.env.MAINNET_INFURA_API_KEY}`,
+      // accounts: [`0x${process.env.MAINNET_PRIVATE_KEY}`],
     // },
   },
   etherscan: {

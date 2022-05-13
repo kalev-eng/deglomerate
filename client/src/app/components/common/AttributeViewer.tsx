@@ -109,6 +109,9 @@ function AttributeViewer(props: Props)  {
         <Typography css={[AppStyles.txt]} variant="h4" component="div">Logo</Typography>
       </MainContainerStyles.Row>
       <MainContainerStyles.Row>
+        <Typography css={[AppStyles.txt]} variant="body1" component="div">Token Id: {props.tokenId}</Typography>
+      </MainContainerStyles.Row>
+      <MainContainerStyles.Row>
         <Typography css={[AppStyles.txt]} variant="body1" component="div">Owner: <Link href={'https://opensea.io/' + owner} underline="hover" target="_blank" rel="noreferrer">{owner.slice(0, 3)}...{owner.slice(-3)}</Link></Typography>
       </MainContainerStyles.Row>
       <MainContainerStyles.Row>

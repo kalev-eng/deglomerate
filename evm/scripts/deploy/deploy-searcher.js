@@ -10,7 +10,7 @@ async function main() {
     libraries: {
     },
   });
-  const logoSearcher = await LogoSearcher.deploy("0x2Dd78Fd9B8F40659Af32eF98555B8b31bC97A351");
+  const logoSearcher = await LogoSearcher.deploy("0xeA55c5579e1ccE3e52217493788f2a909e64f64F");
   await logoSearcher.deployed();
   console.log("Logo Searcher deployed to:", logoSearcher.address);
 }

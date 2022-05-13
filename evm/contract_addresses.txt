@@ -28,3 +28,4 @@ Logo deployed to: 0x320CCb623b612Eef62F186AfF6b664377cb4260b
 Logo Nft Descriptor deployed to: 0x58a224850b21DBA40d9294028a22b87a2B549b6E
 Logo Descriptor deployed to: 0xeA55c5579e1ccE3e52217493788f2a909e64f64F
 Logo Searcher deployed to: 0x505FAeDB47cb08E0A895F90C305ff504b9d08343
+Logo Searcher V2 deployed to: 0xFf46a59299CeE036CBc4DF94aD9D21ec8bc40498
