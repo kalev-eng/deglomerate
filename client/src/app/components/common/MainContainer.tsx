@@ -4,9 +4,9 @@ import React, {useEffect, useState} from 'react';
 import { Routes, Route } from "react-router-dom";
 
 // components
-import { Mint } from './Mint';
-import { Configure } from './Configure';
-import { Rolodex } from './Rolodex';
+import { Mint } from '../mint/Mint';
+import { Configure } from '../configure/Configure';
+import { Rolodex } from '../rolodex/Rolodex';
 import { Terms } from './Terms';
 
 interface Props {};

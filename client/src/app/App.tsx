@@ -19,10 +19,10 @@ import Web3 from 'web3';
 import detectEthereumProvider from '@metamask/detect-provider';
 
 // abi
-import LogosAbi from './logos.json';
-import LogosDescriptorAbi from './logosDescriptor.json';
-import SearchAbi from './logoSearcher.json';
-import ERC721Abi from './erc721a.json';
+import LogosAbi from './abi/logos.json';
+import LogosDescriptorAbi from './abi/logosDescriptor.json';
+import SearchAbi from './abi/logoSearcher.json';
+import ERC721Abi from './abi/erc721a.json';
 
 function App() {
   const web3 = useSelector(app.selectWeb3);

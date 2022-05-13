@@ -20,7 +20,7 @@ import { LogoElement, Logo, BASE_LOGO, MetaData } from '../../dal/model';
 // components
 import { ConfigureElement } from './ConfigureElement';
 import { ConfigureMetaData } from './ConfigureMetaData'; 
-import { LogoViewer } from './LogoViewer'; 
+import { LogoViewer } from '../common/LogoViewer'; 
 
 // web3
 import Web3 from "web3";

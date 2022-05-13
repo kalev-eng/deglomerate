@@ -18,8 +18,8 @@ import * as MainContainerStyles from '../../styles/MainContainer';
 import { Typography, Link } from '@mui/material';
 
 // json
-import TextAbi from '../../text.json';
-import LayerAbi from '../../layerDescriptor.json';
+import TextAbi from '../../abi/text.json';
+import LayerAbi from '../../abi/layerDescriptor.json';
 const textAbi = JSON.parse(TextAbi);
 const layerAbi = JSON.parse(LayerAbi);
 

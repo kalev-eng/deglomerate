@@ -7,9 +7,9 @@ import { useSelector } from 'react-redux';
 import * as app from '../../dal/data/app';
 
 // components
-import { LogoViewer } from './LogoViewer';
-import { MetaDataViewer } from './MetaDataViewer';
-import { AttributeViewer } from './AttributeViewer';
+import { LogoViewer } from '../common/LogoViewer';
+import { MetaDataViewer } from '../common/MetaDataViewer';
+import { AttributeViewer } from '../common/AttributeViewer';
 
 // styles
 import * as AppStyles from '../../styles/App';
