@@ -36,6 +36,10 @@ export const textField = css`
   margin-botom: 10px;
 `;
 
+export const selectField = css`
+  width: 200px;
+`;
+
 export const expand = css`
   height: 55px;
   width: 55px;

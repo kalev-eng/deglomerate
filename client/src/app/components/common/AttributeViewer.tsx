@@ -29,12 +29,18 @@ interface Props {
 
 function AttributeViewer(props: Props)  {
   const [logo, setLogo] = useState<Logo>(BASE_LOGO);
+  const [owner, setOwner] = useState<string>('');
   const web3: Web3 | null = useSelector(app.selectWeb3);
 
+  const logoContract = useSelector(app.selectLogoContract);
   const logoDescriptorContract = useSelector(app.selectLogoDescriptorContract);
 
   useEffect(() => {
     const getAttributes = async () => {
+      if (logoContract !== null) {
+        const owner = await logoContract.methods.ownerOf(props.tokenId).call();
+        setOwner(owner);
+      }
       if (logoDescriptorContract !== null) {
         const logoData = await logoDescriptorContract.methods.logos(props.tokenId).call();
         const logoLayers = await logoDescriptorContract.methods.getLayers(props.tokenId).call();
@@ -101,6 +107,9 @@ function AttributeViewer(props: Props)  {
     <div>
       <MainContainerStyles.Row>
         <Typography css={[AppStyles.txt]} variant="h4" component="div">Logo</Typography>
+      </MainContainerStyles.Row>
+      <MainContainerStyles.Row>
+        <Typography css={[AppStyles.txt]} variant="body1" component="div">Owner: <Link href={'https://opensea.io/' + owner} underline="hover" target="_blank" rel="noreferrer">{owner.slice(0, 3)}...{owner.slice(-3)}</Link></Typography>
       </MainContainerStyles.Row>
       <MainContainerStyles.Row>
         <Typography css={[AppStyles.txt]} variant="body1" component="div">Width: {logo.width}</Typography>
