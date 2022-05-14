@@ -101,7 +101,7 @@ function ConfigureElement(props: Props)  {
             onChange={(e) => props.handleChange(e, props.id, 'font', true)}
             >
           { props.fonts.map(font => {
-            return <MenuItem css={[AppStyles.txt]} value={font}>{font === 'Helvetica' ? font + ' (OpenSea compatible)': font + ' (not OpenSea compatible)'}</MenuItem>;
+            return <MenuItem css={[AppStyles.txt]} value={font}>{font}</MenuItem>;
           })}
           </Select>
         </FormControl>
