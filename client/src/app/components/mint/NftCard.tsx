@@ -101,7 +101,7 @@ function NftCard(props: Props)  {
           </Typography>
         </CardContent>
         <Typography css={[AppStyles.txt]} gutterBottom>
-          No roadmap. No utility.
+          No roadmap.
         </Typography>
         <Typography css={[AppStyles.txt]} gutterBottom>
           Read <Link href='https://deglomerate.gitbook.io/deglomerate/' underline="hover" target="_blank" rel="noreferrer">gitbook</Link> before mint.
