@@ -409,7 +409,7 @@ function Configure(props: Props)  {
           </MainContainerStyles.Row>
 
           <MainContainerStyles.Row css={[ConfigureStyles.preview]}>
-            <LogoViewer width={600} height={600} logo={logoView} downloadable={true}/>
+            <LogoViewer width={500} height={500} logo={logoView} downloadable={true}/>
           </MainContainerStyles.Row>
 
           <MainContainerStyles.Row>

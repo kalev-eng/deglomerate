@@ -118,11 +118,13 @@ function AttributeViewer(props: Props)  {
         return (<div>
               {layer.contractAddress !== NULL_ADDRESS && <MainContainerStyles.SqueezedRow>
                   <Typography css={[AppStyles.txt]} variant="body1" component="div">{'Layer #' + index + ':'}</Typography>
+                  <div>
                   <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={'https://opensea.io/assets/' + (layer.sourceContract ? layer.sourceContract: layer.contractAddress) + '/' + layer.tokenId} underline="hover" target="_blank" rel="noreferrer">token</Link></Typography>
                   {layer.collectionUrl && <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={layer.collectionUrl} underline="hover" target="_blank" rel="noreferrer">collection</Link></Typography>}
                   {layer.discordUrl && <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={layer.discordUrl} underline="hover" target="_blank" rel="noreferrer">discord</Link></Typography>}
                   {layer.twitterUrl && <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={layer.twitterUrl} underline="hover" target="_blank" rel="noreferrer">twitter</Link></Typography>}
                   {layer.siteUrl && <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={layer.siteUrl} underline="hover" target="_blank" rel="noreferrer">website</Link></Typography>}
+                  </div>
                 </MainContainerStyles.SqueezedRow>
                 }
               </div>)

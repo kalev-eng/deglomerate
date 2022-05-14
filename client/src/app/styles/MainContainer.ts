@@ -24,14 +24,6 @@ export const SqueezedRow = styled.div`
   position: relative;
 `;
 
-export const SpreadRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  width: 100%;
-  position: relative;
-`;
-
 export const RowCenter = styled.div`
   display: flex;
   justify-content: center;

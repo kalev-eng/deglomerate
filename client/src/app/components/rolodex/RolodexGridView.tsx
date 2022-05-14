@@ -108,7 +108,7 @@ function RolodexGridView(props: Props)  {
 
   return (
     <MainContainerStyles.Content>
-      <MainContainerStyles.RowCenter css={[RolodexStyles.icons]}>
+      <MainContainerStyles.RowCenter css={[RolodexStyles.searchIcons]}>
         <Tooltip title="Previous (based on search criteria)" placement="top">
           <Button variant="outlined" css={[AppStyles.txt, AppStyles.link]} onClick={() => previousConfiguredLogos()} size="large" disableElevation>&lt;&lt;</Button>
         </Tooltip>  
@@ -120,10 +120,10 @@ function RolodexGridView(props: Props)  {
         {tokenIds.map(tokenId => {
           return (<div  css={[RolodexStyles.logo]}>
             <LogoViewer width={350} height={350} tokenId={tokenId} downloadable={false}/>
-            <MainContainerStyles.SpreadRow  css={[RolodexStyles.dataContainer]}>
+            <RolodexStyles.SpreadRow  css={[RolodexStyles.dataContainer]}>
               <MetaDataViewer tokenId={tokenId} />
               <AttributeViewer tokenId={tokenId} />
-            </MainContainerStyles.SpreadRow>
+            </RolodexStyles.SpreadRow>
           </div>)
         })}
       </MainContainerStyles.RowCenter>

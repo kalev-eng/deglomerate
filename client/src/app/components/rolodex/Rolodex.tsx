@@ -59,7 +59,7 @@ function Rolodex(props: Props)  {
         <FormControl>
           <InputLabel id="searchby-select-label">Search by</InputLabel>
           <Select
-            css={[AppStyles.txt, RolodexStyles.selectField]}
+            css={[AppStyles.txt, RolodexStyles.headerField]}
             labelId="searchby-label"
             id="searchby-select"
             label="Search by"

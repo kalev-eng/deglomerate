@@ -100,10 +100,15 @@ function RolodexIndividualView(props: Props)  {
       </MainContainerStyles.RowCenter>
       <MainContainerStyles.RowCenter>
         <LogoViewer width={500} height={500} tokenId={displayTokenId} downloadable={false}/>
+        <div css={[RolodexStyles.dataPanel]}>
+        <MetaDataViewer css={[RolodexStyles.dataPanel]}  tokenId={tokenId} />
+        </div>
+        <div css={[RolodexStyles.dataPanel]}>
+        <AttributeViewer css={[RolodexStyles.dataPanel]}  tokenId={tokenId} />
+        </div>
       </MainContainerStyles.RowCenter>
       <MainContainerStyles.RowCenter css={[RolodexStyles.dataContainer]}>
-        <MetaDataViewer tokenId={tokenId} />
-        <AttributeViewer tokenId={tokenId} />
+       
       </MainContainerStyles.RowCenter>
       <MainContainerStyles.RowCenter>
       </MainContainerStyles.RowCenter>
