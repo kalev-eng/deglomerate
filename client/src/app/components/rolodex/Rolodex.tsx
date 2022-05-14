@@ -31,7 +31,7 @@ interface Props {};
 function Rolodex(props: Props)  {
   const [view, setView] = useState<string>('grid');
 
-  const [searchBy, setSearchyBy] = useState<string>('has logo layers configured');
+  const [searchBy, setSearchyBy] = useState<string>('has a logo image');
 
   const clickedGridView = () => {
     setView('grid');

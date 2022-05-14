@@ -69,19 +69,19 @@ const FONT_LINK = 'https://fonts.googleapis.com/css?family=';
 // metadata
 const META_DATA_KEYS: string[] = ['name', 'role', 'twitter url', 'discord'];
 const ROLES: string[] = ['artist', 'collector', 'community manager', 'project manager', 'discord builder', 'mod', 'marketing', 'full-stack developer', 'solidity developer', 'ui developer', 'community'];
-const ROLODEX_SEARCH_BY: Map<string, string[]> = new Map([['has logo layers configured', ['layers', '']],
+const ROLODEX_SEARCH_BY: Map<string, string[]> = new Map([['has a logo image', ['layers', '']],
                                                     ['has any role configured', ['role', '']],
-                                                    ['has role of artist', ['role', 'artist']],
-                                                    ['has role of collector', ['role', 'collector']],
-                                                    ['has role of community manager', ['role', 'community manager']],
-                                                    ['has role of project manager', ['role', 'project manager']],
-                                                    ['has role of discord builder', ['role', 'discord builder']],
-                                                    ['has role of mod', ['role', 'mod']],
-                                                    ['has role of marketing', ['role', 'marketing']],
-                                                    ['has role of full-stack developer', ['role', 'full-stack developer']],
-                                                    ['has role of solidity developer', ['role', 'solidity developer']],
-                                                    ['has role of ui developer', ['role', 'ui developer']],
-                                                    ['has role of community', ['role', 'community']],
+                                                    ['is an artist', ['role', 'artist']],
+                                                    ['is a collector', ['role', 'collector']],
+                                                    ['is a community manager', ['role', 'community manager']],
+                                                    ['is a project manager', ['role', 'project manager']],
+                                                    ['is a discord builder', ['role', 'discord builder']],
+                                                    ['is a mod', ['role', 'mod']],
+                                                    ['is a marketer', ['role', 'marketing']],
+                                                    ['is a full-stack developer', ['role', 'full-stack developer']],
+                                                    ['is a solidity developer', ['role', 'solidity developer']],
+                                                    ['is a ui developer', ['role', 'ui developer']],
+                                                    ['is a community', ['role', 'community']]
                                                   ]);
 
 export { LOGO_CONTRACT_ADDRESS };
