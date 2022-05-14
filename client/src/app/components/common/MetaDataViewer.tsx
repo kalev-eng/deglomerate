@@ -15,7 +15,7 @@ import { META_DATA_KEYS } from '../../dal/data/static';
 // styles
 import * as AppStyles from '../../styles/App';
 import * as MainContainerStyles from '../../styles/MainContainer';
-import { Typography, Link } from '@mui/material';
+import { Typography, Link, Tooltip } from '@mui/material';
 
 interface Props {
   tokenId: number;
@@ -48,19 +48,22 @@ function MetaDataViewer(props: Props)  {
   return (
     <div>
       <MainContainerStyles.Row>
-        <Typography css={[AppStyles.txt]} variant="h4" component="div">Metadata</Typography>
+        <Typography css={[AppStyles.txt]} variant="h5" component="div">Profile</Typography>
       </MainContainerStyles.Row>
      {metaData.map(mdElement => {
-        return (<MainContainerStyles.Row>
+        return (<MainContainerStyles.SqueezedRow>
                   <Typography css={[AppStyles.txt]} variant="body1" component="div">{mdElement.key}:</Typography>
                   {mdElement.key === 'name' && mdElement.value !== '' ? 
                   <Typography css={[AppStyles.txt]} variant="body1" component="div">{mdElement.value}</Typography>
                   : mdElement.key === 'role' && mdElement.value !== '' ? 
                   <Typography css={[AppStyles.txt]} variant="body1" component="div">{mdElement.value}</Typography>
                   : mdElement.key === 'twitter url' && mdElement.value !== '' ? 
-                  <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={withHttp(mdElement.value)} underline="hover" target="_blank" rel="noreferrer">{mdElement.value}</Link></Typography>
+                  <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={withHttp(mdElement.value)} underline="hover" target="_blank" rel="noreferrer">...{mdElement.value.slice(-12)}</Link></Typography>
                   : mdElement.key === 'discord' && mdElement.value !== '' ? 
-                  <Typography css={[AppStyles.txt, AppStyles.selectable]} variant="body1" component="div">{mdElement.value}</Typography>
+                  <div>
+                    {mdElement.value.includes('https://') ? <Typography css={[AppStyles.txt, AppStyles.selectable]} variant="body1" component="div"><Link href={mdElement.value} underline="hover" target="_blank" rel="noreferrer">...{mdElement.value.slice(-12)}</Link></Typography> 
+                    : <Typography css={[AppStyles.txt, AppStyles.selectable]} variant="body1" component="div">{mdElement.value}</Typography>}
+                  </div>
                   : mdElement.key === 'url' && mdElement.value !== '' ? 
                   <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={withHttp(mdElement.value)} underline="hover" target="_blank" rel="noreferrer">{mdElement.value}</Link></Typography>
                   : mdElement.key === 'ens' && mdElement.value !== '' ?
@@ -68,7 +71,7 @@ function MetaDataViewer(props: Props)  {
                   : mdElement.key === 'token address' && mdElement.value !== '' ?
                   <Typography css={[AppStyles.txt]} variant="body1" component="div"><Link href={'https://etherscan.io/token/' + mdElement.value + '#balances'} underline="hover" target="_blank" rel="noreferrer">{mdElement.value.slice(0, 3)}...{mdElement.value.slice(-3)}</Link></Typography>
                   : <Typography css={[AppStyles.txt]} variant="body1" component="div">none</Typography>}
-                </MainContainerStyles.Row>)
+                </MainContainerStyles.SqueezedRow>)
         })}
     </div>
   )

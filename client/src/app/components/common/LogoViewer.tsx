@@ -69,7 +69,7 @@ function LogoViewer(props: Props)  {
         <div  css={[LogoViewerStyles.empty, css({ width: props.width, height: props.height })]} />
           :
         <div>
-          <iframe css={[LogoViewerStyles.container]} srcdoc={logo} width={props.width} height={props.height} frameBorder="0"></iframe>
+          <iframe title="svg" css={[LogoViewerStyles.container]} scrolling="no" srcdoc={logo} width={props.width} height={props.height} frameBorder="0"></iframe>
           { props.downloadable && <MainContainerStyles.Row><a css={[LogoViewerStyles.downloadRow]} onClick={() => onClickDownload()}><img src={DownloadIcon} alt="logo" css={[LogoViewerStyles.download]} /></a></MainContainerStyles.Row> } 
         </div>
           :

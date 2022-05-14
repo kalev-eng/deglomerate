@@ -16,6 +16,22 @@ export const Row = styled.div`
   margin-top: 10px;
 `;
 
+export const SqueezedRow = styled.div`
+  display: flex;
+  justify-content: left;
+  gap: 10px;
+  width: 100%;
+  position: relative;
+`;
+
+export const SpreadRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  position: relative;
+`;
+
 export const RowCenter = styled.div`
   display: flex;
   justify-content: center;

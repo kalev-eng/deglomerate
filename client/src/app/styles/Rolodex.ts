@@ -9,10 +9,18 @@ export const icons = css`
 
 export const grid = css`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 2.8vw;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2vw;
 `;
 
 export const selectField = css`
   width: 400px;
+`;
+
+export const logo = css`
+  width: 320px;
+`;
+
+export const dataContainer = css`
+  margin-left: 20px;
 `;

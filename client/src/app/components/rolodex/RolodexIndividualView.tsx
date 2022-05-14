@@ -13,8 +13,9 @@ import { AttributeViewer } from '../common/AttributeViewer';
 
 // styles
 import * as AppStyles from '../../styles/App';
-import { TextField, Button, Tooltip } from '@mui/material';
 import * as MainContainerStyles from '../../styles/MainContainer';
+import * as RolodexStyles from '../../styles/Rolodex';
+import { TextField, Button, Tooltip } from '@mui/material';
 
 // static
 import { MAX_UINT } from '../../dal/data/static';
@@ -98,14 +99,13 @@ function RolodexIndividualView(props: Props)  {
         </Tooltip>
       </MainContainerStyles.RowCenter>
       <MainContainerStyles.RowCenter>
-        <LogoViewer width={600} height={600} tokenId={displayTokenId} downloadable={true}/>
+        <LogoViewer width={500} height={500} tokenId={displayTokenId} downloadable={false}/>
       </MainContainerStyles.RowCenter>
-      <MainContainerStyles.RowCenter>
+      <MainContainerStyles.RowCenter css={[RolodexStyles.dataContainer]}>
         <MetaDataViewer tokenId={tokenId} />
         <AttributeViewer tokenId={tokenId} />
       </MainContainerStyles.RowCenter>
       <MainContainerStyles.RowCenter>
-        
       </MainContainerStyles.RowCenter>
     </MainContainerStyles.Content>
   )

@@ -413,7 +413,7 @@ function Configure(props: Props)  {
           </MainContainerStyles.Row>
 
           <MainContainerStyles.Row>
-            <Typography css={[AppStyles.txt, ConfigureStyles.header]} variant="h3" component="div">Layers</Typography>
+            <Typography css={[AppStyles.txt, ConfigureStyles.header]} variant="h3" component="div">Image</Typography>
           </MainContainerStyles.Row>
 
           <ConfigureElement id="background" label="Background" element={logo.layers[0]} selectMap={BACKGROUND_ELEMENTS} onlyOwnedTokenIds={true} ownedTokenIds={getOwnedBgTokenIds()} handleChange={handleLogoElementChange} handleUpdate={handleLogoElementUpdate} includeText={false} fonts={[]} />
@@ -422,23 +422,23 @@ function Configure(props: Props)  {
 
           <MainContainerStyles.Row>
             { !account && 
-              <Button variant="outlined" css={[AppStyles.txt, AppStyles.link, ConfigureStyles.updateLogo]} disabled>Update Layers</Button>
+              <Button variant="outlined" css={[AppStyles.txt, AppStyles.link, ConfigureStyles.updateLogo]} disabled>Update Logo Image</Button>
             }
             { account && 
-              <Button variant="outlined" css={[AppStyles.txt, AppStyles.link, ConfigureStyles.updateLogo]}  onClick={() => handleSetLogo()} >Update Layers</Button>
+              <Button variant="outlined" css={[AppStyles.txt, AppStyles.link, ConfigureStyles.updateLogo]}  onClick={() => handleSetLogo()} >Update Logo Image</Button>
             }
           </MainContainerStyles.Row>
           
           <MainContainerStyles.Row>
-            <Typography css={[AppStyles.txt, ConfigureStyles.header]} variant="h3" component="div">Metadata</Typography>
+            <Typography css={[AppStyles.txt, ConfigureStyles.header]} variant="h3" component="div">Profile</Typography>
           </MainContainerStyles.Row>
           <ConfigureMetaData metaData={metaData} handleChange={handleLogoMetaDataChange} />
           <MainContainerStyles.Row>
             { !account && 
-              <Button variant="outlined" css={[AppStyles.txt, AppStyles.link, ConfigureStyles.updateLogo]} disabled>Update Logo Metadata</Button>
+              <Button variant="outlined" css={[AppStyles.txt, AppStyles.link, ConfigureStyles.updateLogo]} disabled>Update Logo Profile</Button>
             }
             { account && 
-              <Button variant="outlined" css={[AppStyles.txt, AppStyles.link, ConfigureStyles.updateLogo]}  onClick={() => handleSetMetaData()} >Update Metadata</Button>
+              <Button variant="outlined" css={[AppStyles.txt, AppStyles.link, ConfigureStyles.updateLogo]}  onClick={() => handleSetMetaData()} >Update Logo Profile</Button>
             }
           </MainContainerStyles.Row>
             

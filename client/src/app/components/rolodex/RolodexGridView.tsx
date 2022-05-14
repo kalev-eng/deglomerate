@@ -20,6 +20,8 @@ import { TextField, Button, Tooltip } from '@mui/material';
 // static
 import { MAX_UINT } from '../../dal/data/static';
 
+const GRID_QUANTITY = 6;
+
 interface Props {
   searchByKey: string;
   searchByValue: string;
@@ -46,7 +48,7 @@ function RolodexGridView(props: Props)  {
   useEffect(() => {
     const init = async () => {
       if (searchContract !== null && maxTokenId !== 0) {
-        const nxtTokenIds = await searchContract.methods.getNextConfiguredLogos(4, props.searchByKey, props.searchByValue, 0, maxTokenId).call();
+        const nxtTokenIds = await searchContract.methods.getNextConfiguredLogos(GRID_QUANTITY, props.searchByKey, props.searchByValue, 0, maxTokenId).call();
         parseAndSetTokenIds(nxtTokenIds);
       }
     };
@@ -57,7 +59,7 @@ function RolodexGridView(props: Props)  {
     const search = async () => {
       if (searchContract !== null) {
         setTokenIds([]);
-        const nxtTokenIds = await searchContract.methods.getNextConfiguredLogos(4, props.searchByKey, props.searchByValue, 0, maxTokenId).call();
+        const nxtTokenIds = await searchContract.methods.getNextConfiguredLogos(GRID_QUANTITY, props.searchByKey, props.searchByValue, 0, maxTokenId).call();
         parseAndSetTokenIds(nxtTokenIds);
       }
     };
@@ -72,7 +74,7 @@ function RolodexGridView(props: Props)  {
       if (tokenIds.includes(nxtTokenId)) {
         return;
       }
-      const nxtTokenIds = await searchContract.methods.getPreviousConfiguredLogos(nxtTokenId >= 3 ? 4: nxtTokenId + 1, props.searchByKey, props.searchByValue, nxtTokenId, 0).call();
+      const nxtTokenIds = await searchContract.methods.getPreviousConfiguredLogos(nxtTokenId >= GRID_QUANTITY - 1 ? GRID_QUANTITY: nxtTokenId + 1, props.searchByKey, props.searchByValue, nxtTokenId, 0).call();
       parseAndSetTokenIds(nxtTokenIds);
     }
   }
@@ -80,7 +82,7 @@ function RolodexGridView(props: Props)  {
   const nextConfiguredLogos = async () => {
     if (searchContract) {
       const nxtTokenId = tokenIds.length > 0 ? tokenIds[tokenIds.length - 1] + 1 : 0;
-      const nxtTokenIds = await searchContract.methods.getNextConfiguredLogos(4, props.searchByKey, props.searchByValue, nxtTokenId, maxTokenId).call();
+      const nxtTokenIds = await searchContract.methods.getNextConfiguredLogos(GRID_QUANTITY, props.searchByKey, props.searchByValue, nxtTokenId, maxTokenId).call();
       parseAndSetTokenIds(nxtTokenIds);
     }
   }
@@ -116,13 +118,13 @@ function RolodexGridView(props: Props)  {
       </MainContainerStyles.RowCenter>
       <MainContainerStyles.RowCenter css={[RolodexStyles.grid]}>
         {tokenIds.map(tokenId => {
-          return (<div>
-            <LogoViewer width={500} height={500} tokenId={tokenId} downloadable={false}/>
-            <MainContainerStyles.RowCenter>
+          return (<div  css={[RolodexStyles.logo]}>
+            <LogoViewer width={350} height={350} tokenId={tokenId} downloadable={false}/>
+            <MainContainerStyles.SpreadRow  css={[RolodexStyles.dataContainer]}>
               <MetaDataViewer tokenId={tokenId} />
               <AttributeViewer tokenId={tokenId} />
-            </MainContainerStyles.RowCenter>
-        </div>)
+            </MainContainerStyles.SpreadRow>
+          </div>)
         })}
       </MainContainerStyles.RowCenter>
     </MainContainerStyles.Content>

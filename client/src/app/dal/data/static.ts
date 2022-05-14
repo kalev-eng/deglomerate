@@ -67,7 +67,7 @@ const FONTS: string[] = ['Helvetica', 'Rubik', 'Playfair Display', 'Oswald', 'Wo
 const FONT_LINK = 'https://fonts.googleapis.com/css?family=';
 
 // metadata
-const META_DATA_KEYS: string[] = ['role', 'name', 'twitter url', 'discord'];
+const META_DATA_KEYS: string[] = ['name', 'role', 'twitter url', 'discord'];
 const ROLES: string[] = ['artist', 'collector', 'community manager', 'project manager', 'discord builder', 'mod', 'marketing', 'full-stack developer', 'solidity developer', 'ui developer', 'community'];
 const ROLODEX_SEARCH_BY: Map<string, string[]> = new Map([['has logo layers configured', ['layers', '']],
                                                     ['has any role configured', ['role', '']],
